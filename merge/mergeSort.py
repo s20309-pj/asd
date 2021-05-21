@@ -1,5 +1,4 @@
-from timeit import default_timer as timer
-from datetime import timedelta
+import timeit
 
 
 def merge(left, right):
@@ -32,19 +31,20 @@ def merge(left, right):
 
 
 def merge_sort(nums):
-    start = timer()
     if len(nums) <= 1:
         return nums
 
     mid = len(nums) // 2
 
-    left = merge_sort(nums[:mid])
-    right = merge_sort(nums[mid:])
-    end = timer()
-    print(timedelta(seconds=end - start))
-    return merge(left, right)
+    left_l = merge_sort(nums[:mid])
+    right_l = merge_sort(nums[mid:])
+    return merge(left_l, right_l)
 
 
 random_numbers = [35, 12, 43, 8, 51, 44, 78, 1, 17, 55, 100, 3, 19, 25, 11, 22, 2, 99]
-random_numbers = merge_sort(random_numbers)
-print(random_numbers)
+tDown = timeit.timeit(lambda: merge_sort(random_numbers), number=100)
+print(tDown)
+# tUp = timeit.timeit(lambda: merge_sort(random_numbers), number=100)
+# print(tUp)
+random_num = merge_sort(random_numbers)
+print(random_num)
