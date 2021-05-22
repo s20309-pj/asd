@@ -1,4 +1,23 @@
 import timeit
+import random
+
+arrRand = []
+arrSort = []
+arrRSort = []
+
+
+def fillRandArr():
+    return [random.randint(1, 50000) for _ in range(50000)]
+
+
+def fillSortArr():
+    for i in range(0, 50000):
+        arrSort.append(i)
+
+
+def fillSortRArr():
+    for i in range(0, 50000):
+        arrRSort.append(50000 - i)
 
 
 def merge(left, right):
@@ -14,6 +33,7 @@ def merge(left, right):
             if left[left_index] <= right[right_index]:
                 sorted_l.append(left[left_index])
                 left_index += 1
+
 
             else:
                 sorted_l.append(right[right_index])
@@ -35,16 +55,17 @@ def merge_sort(nums):
         return nums
 
     mid = len(nums) // 2
-
     left_l = merge_sort(nums[:mid])
     right_l = merge_sort(nums[mid:])
     return merge(left_l, right_l)
 
 
-random_numbers = [35, 12, 43, 8, 51, 44, 78, 1, 17, 55, 100, 3, 19, 25, 11, 22, 2, 99]
-tDown = timeit.timeit(lambda: merge_sort(random_numbers), number=100)
-print(tDown)
-# tUp = timeit.timeit(lambda: merge_sort(random_numbers), number=100)
-# print(tUp)
-random_num = merge_sort(random_numbers)
-print(random_num)
+arrRand = fillRandArr()
+fillSortArr()
+fillSortRArr()
+tDown = timeit.timeit(lambda: merge_sort(arrRand), number=1)
+print("BS random: ", round(tDown, 6))
+tQsS = timeit.timeit(lambda: merge_sort(arrSort), number=1)
+print("BS sort:   ", round(tQsS, 6))
+tQsRS = timeit.timeit(lambda: merge_sort(arrRSort), number=1)
+print("BS r sort: ", round(tQsRS, 6))
