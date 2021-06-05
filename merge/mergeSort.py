@@ -1,23 +1,23 @@
 import timeit
 import random
 
-arrRand = []
-arrSort = []
-arrRSort = []
+random_array = []
+sorted_array = []
+reverse_sorted_array = []
 
 
-def fillRandArr():
+def fill_random_array():
     return [random.randint(1, 50000) for _ in range(50000)]
 
 
-def fillSortArr():
+def fill_sorted_array():
     for i in range(0, 50000):
-        arrSort.append(i)
+        sorted_array.append(i)
 
 
-def fillSortRArr():
+def fill_reverse_sorted_array():
     for i in range(0, 50000):
-        arrRSort.append(50000 - i)
+        reverse_sorted_array.append(50000 - i)
 
 
 def merge(left, right):
@@ -60,12 +60,12 @@ def merge_sort(nums):
     return merge(left_l, right_l)
 
 
-arrRand = fillRandArr()
-fillSortArr()
-fillSortRArr()
-tDown = timeit.timeit(lambda: merge_sort(arrRand), number=1)
-print("BS random: ", round(tDown, 6))
-tQsS = timeit.timeit(lambda: merge_sort(arrSort), number=1)
-print("BS sort:   ", round(tQsS, 6))
-tQsRS = timeit.timeit(lambda: merge_sort(arrRSort), number=1)
-print("BS r sort: ", round(tQsRS, 6))
+random_array = fill_random_array()
+fill_sorted_array()
+fill_reverse_sorted_array()
+tDown = timeit.timeit(lambda: merge_sort(random_array), number=1)
+print("random array: ", round(tDown, 6))
+t_Ms_S = timeit.timeit(lambda: merge_sort(sorted_array), number=1)
+print("sorted array:   ", round(t_Ms_S, 6))
+t_Ms_RS = timeit.timeit(lambda: merge_sort(reverse_sorted_array), number=1)
+print("reverse: ", round(t_Ms_RS, 6))

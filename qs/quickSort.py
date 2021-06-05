@@ -2,23 +2,23 @@ import timeit
 import random
 
 
-# arrRand = []
-# arrSort = []
-# arrRSort = []
-#
-#
-# def fillRandArr():
-#     return [random.randint(1, 50000) for _ in range(50000)]
-#
-#
-# def fillSortArr():
-#     for i in range(0, 50000):
-#         arrSort.append(i)
-#
-#
-# def fillSortRArr():
-#     for i in range(0, 50000):
-#         arrRSort.append(50000 - i)
+random_array_2 = []
+sorted_array_2 = []
+reverse_sorted_array_2 = []
+
+
+def fill_random_array():
+    return [random.randint(1, 50000) for _ in range(50000)]
+
+
+def fill_sorted_array():
+    for i in range(0, 50000):
+        sorted_array_2.append(i)
+
+
+def fill_reverse_sorted_array():
+    for i in range(0, 50000):
+        reverse_sorted_array_2.append(50000 - i)
 
 
 def partition(arr, min_index, max_index):
@@ -42,13 +42,13 @@ def quicksort(arr, min_index, max_index):
         quicksort(arr, q + 1, max_index)
 
 
-# arrRand = fillRandArr()
-# fillSortArr()
-# fillSortRArr()
-# tDown = timeit.timeit(lambda: quicksort(arrRand, 0, len(arrRand) - 1), number=1)
-# print("BS random: ", round(tDown, 6))
-# tQsS = timeit.timeit(lambda: quicksort(arrSort, 0, len(arrSort) - 1), number=1)
-# print("BS sort:   ", round(tQsS, 6))
-# tQsRS = timeit.timeit(lambda: quicksort(arrRSort, 0, len(arrRSort) - 1), number=1)
-# print("BS r sort: ", round(tQsRS, 6))
+random_array_2 = fill_random_array()
+fill_sorted_array()
+fill_reverse_sorted_array()
+tDown = timeit.timeit(lambda: quicksort(random_array_2, 0, len(random_array_2) - 1), number=1)
+print("random time: ", round(tDown, 6))
+tQsS = timeit.timeit(lambda: quicksort(sorted_array_2, 0, len(sorted_array_2) - 1), number=1)
+print("sort time:   ", round(tQsS, 6))
+tQsRS = timeit.timeit(lambda: quicksort(reverse_sorted_array_2, 0, len(reverse_sorted_array_2) - 1), number=1)
+print("reverse sort time: ", round(tQsRS, 6))
 

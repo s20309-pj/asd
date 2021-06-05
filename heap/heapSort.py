@@ -1,23 +1,23 @@
 import timeit
 import random
 
-arrRand = []
-arrSort = []
-arrRSort = []
+random_array_3 = []
+sorted_array_3 = []
+reverse_sorted_array_3 = []
 
 
-def fillRandArr():
+def fill_random_array_3():
     return [random.randint(1, 50000) for _ in range(50000)]
 
 
-def fillSortArr():
+def fill_sorted_array_3():
     for i in range(0, 50000):
-        arrSort.append(i)
+        sorted_array_3.append(i)
 
 
-def fillSortRArr():
+def fill_reverse_sorted_array_3():
     for i in range(0, 50000):
-        arrRSort.append(50000 - i)
+        reverse_sorted_array_3.append(50000 - i)
 
 
 def heapify(numbers, heap_size, index):
@@ -33,7 +33,6 @@ def heapify(numbers, heap_size, index):
 
     if maximum != index:
         numbers[index], numbers[maximum] = numbers[maximum], numbers[index]
-        # Heapify the new root element to ensure it's the largest
         heapify(numbers, heap_size, maximum)
 
 
@@ -41,7 +40,7 @@ def heap_sort(numbers):
     n = len(numbers)
 
     for i in range(n, -1, -1):
-        # Swap
+
         heapify(numbers, n, i)
 
     for i in range(n - 1, 0, -1):
@@ -50,12 +49,12 @@ def heap_sort(numbers):
         heapify(numbers, i, 0)
 
 
-arrRand = fillRandArr()
-fillSortArr()
-fillSortRArr()
-tDown = timeit.timeit(lambda: heap_sort(arrRand), number=1)
-print("BS random: ", round(tDown, 6))
-tQsS = timeit.timeit(lambda: heap_sort(arrSort), number=1)
-print("BS sort:   ", round(tQsS, 6))
-tQsRS = timeit.timeit(lambda: heap_sort(arrRSort), number=1)
-print("BS r sort: ", round(tQsRS, 6))
+random_array_3 = fill_random_array_3()
+fill_sorted_array_3()
+fill_reverse_sorted_array_3()
+tDown = timeit.timeit(lambda: heap_sort(random_array_3), number=1)
+print("random time: ", round(tDown, 6))
+t_Hs_S = timeit.timeit(lambda: heap_sort(sorted_array_3), number=1)
+print("sort time:   ", round(t_Hs_S, 6))
+t_Hs_RS = timeit.timeit(lambda: heap_sort(reverse_sorted_array_3), number=1)
+print("reverse sort time: ", round(t_Hs_RS, 6))
